@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
     var lastName: String = ""
     var country: String = ""
     
-    var jsonDict: [Json4Swift_Base]?
+    var jsonDict: [Json4Swift_Base] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,9 @@ class ViewController: UIViewController {
         
         let jsonVar = Json4Swift_Base(birth: birth.self, occupation: occupation.self, name: name.self, lastname: lastName.self, country: country.self)
         
-        jsonDict?.append(jsonVar)
+        jsonDict.append(jsonVar)
         
-        let jsonData = try? JSONSerialization.data(withJSONObject: jsonVar)
+        let jsonData = try? JSONSerialization.data(withJSONObject: jsonVar.dictionaryRepresentation())
         
         var request = URLRequest(url: URL(string: "https://jsonplaceholder.typicode.com/posts")!)
         request.httpMethod = "POST"
