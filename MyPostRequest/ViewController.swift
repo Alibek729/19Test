@@ -11,6 +11,7 @@ import Alamofire
 class ViewController: UIViewController {
 
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var birthTextField: UITextField!
     
     var birth: Int = 0
     var occupation: String = ""
@@ -22,8 +23,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        birthTextField.delegate = self
+        birthTextField.keyboardType = .numberPad
     }
+    
+    //MARK: - RequestWithURLSession
     
     private func requestWithURLSession() {
         
@@ -58,6 +62,8 @@ class ViewController: UIViewController {
         }.resume()
     }
     
+    //MARK: - RequestWithAlamofire
+    
     private func requestWithAlamofire() {
         let item = Item(birth: birth, occupation: occupation, name: name, lastname: lastName, country: country)
         
@@ -75,6 +81,8 @@ class ViewController: UIViewController {
             debugPrint(response)
         }
     }
+    
+    //MARK: - IBActions
     
     @IBAction func birthDidEndEditing(_ sender: UITextField) {
         let birthString = sender.text ?? ""
@@ -105,6 +113,8 @@ class ViewController: UIViewController {
         requestWithAlamofire()
     }
     
+    //MARK: - UIAlert
+    
     private func displaySuccess() {
         resultLabel.text = "Success"
         resultLabel.textColor = .systemGreen
@@ -115,5 +125,15 @@ class ViewController: UIViewController {
         resultLabel.textColor = .systemRed
     }
     
+}
+
+//MARK: - UITextFieldDelegate
+
+extension ViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
 }
 

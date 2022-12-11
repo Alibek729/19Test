@@ -151,6 +151,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="birthTextField" destination="h3b-qK-EYp" id="Ocg-ZF-9Ng"/>
                         <outlet property="resultLabel" destination="pRg-GD-PLl" id="gmU-aS-7aR"/>
                     </connections>
                 </viewController>
