@@ -123,7 +123,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvE-gJ-aIB">
                                         <rect key="frame" x="0.0" y="272.66666666666669" width="370" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="URLSession"/>
                                         <connections>
                                             <action selector="sendWirhURLRequestWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r1e-gY-sEr"/>
                                         </connections>
@@ -131,7 +131,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSp-rz-0Id">
                                         <rect key="frame" x="0.0" y="315.66666666666669" width="370" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Alamofire"/>
+                                        <connections>
+                                            <action selector="sendWithAlamofireWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PoW-4m-BdN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -140,11 +143,11 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemRedColor"/>
                         <constraints>
-                            <constraint firstItem="Ozd-q0-1wR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="93q-dX-tZD"/>
                             <constraint firstItem="Ozd-q0-1wR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Yti-zm-KbR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ozd-q0-1wR" secondAttribute="trailing" constant="10" id="eb8-a3-A89"/>
+                            <constraint firstItem="Ozd-q0-1wR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gFI-qM-FLB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -157,8 +160,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

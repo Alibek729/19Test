@@ -58,6 +58,24 @@ class ViewController: UIViewController {
         }.resume()
     }
     
+    private func requestWithAlamofire() {
+        let item = Item(birth: birth, occupation: occupation, name: name, lastname: lastName, country: country)
+        
+        AF.request(
+            "https://jsonplaceholder.typicode.com/posts",
+            method: .post,
+            parameters: item,
+            encoder: JSONParameterEncoder.default
+        ).response { [weak self] response in
+            guard response.error == nil else {
+                self?.displayFailure()
+                return
+            }
+            self?.displaySuccess()
+            debugPrint(response)
+        }
+    }
+    
     @IBAction func birthDidEndEditing(_ sender: UITextField) {
         let birthString = sender.text ?? ""
         birth = Int(birthString) ?? 0
@@ -81,6 +99,10 @@ class ViewController: UIViewController {
     
     @IBAction func sendWirhURLRequest(_sender: UIButton) {
         requestWithURLSession()
+    }
+    
+    @IBAction func sendWithAlamofire(_sender: UIButton) {
+        requestWithAlamofire()
     }
     
     private func displaySuccess() {
