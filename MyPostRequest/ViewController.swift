@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var name: String = ""
     var lastName: String = ""
     var country: String = ""
+    var requestResult: String = ""
+    var requestMessage: String = ""
     
     var jsonDict: [Json4Swift_Base] = []
     
@@ -44,15 +46,13 @@ class ViewController: UIViewController {
         
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let safeData = data, error == nil else {
-                DispatchQueue.main.async {
-                    self!.displayFailure()
-                }
+                self!.requestResult = "Error"
+                self!.requestMessage = "JSON POST Request ERROR, please try again later"
                 return
             }
             
-            DispatchQueue.main.async {
-                self!.displaySuccess()
-            }
+            self!.requestResult = "Success"
+            self!.requestMessage = "Request result is succesfull"
             
             let responseJSON = try? JSONSerialization.jsonObject(with: safeData, options: [])
             
@@ -74,10 +74,12 @@ class ViewController: UIViewController {
             encoder: JSONParameterEncoder.default
         ).response { [weak self] response in
             guard response.error == nil else {
-                self?.displayFailure()
+                self!.requestResult = "Error"
+                self!.requestMessage = "JSON POST Request ERROR, please try again later"
                 return
             }
-            self?.displaySuccess()
+            self!.requestResult = "Success"
+            self!.requestMessage = "Request result is succesfull"
             debugPrint(response)
         }
     }
@@ -105,24 +107,39 @@ class ViewController: UIViewController {
         country = sender.text ?? ""
     }
     
-    @IBAction func sendWirhURLRequest(_sender: UIButton) {
+    @IBAction func sendWithURLRequest(_ sender: UIButton) {
         requestWithURLSession()
+        alertMessage(sender)
     }
     
-    @IBAction func sendWithAlamofire(_sender: UIButton) {
+    @IBAction func sendWithAlamofire(_ sender: UIButton) {
         requestWithAlamofire()
+        alertMessage(sender)
     }
+    
     
     //MARK: - UIAlert
     
-    private func displaySuccess() {
-        resultLabel.text = "Success"
-        resultLabel.textColor = .systemGreen
+    private func createAlert() -> UIAlertController {
+        
+        let alert = UIAlertController(
+            title: requestResult,
+            message: requestMessage,
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        return alert
     }
     
-    private func displayFailure() {
-        resultLabel.text = "Failure"
-        resultLabel.textColor = .systemRed
+    private func alertMessage(_ action: UIButton) {
+        action.addAction(UIAction(
+            handler: { [weak self] _ in
+                let alert = self?.createAlert() ?? UIAlertController()
+                self?.present(
+                    alert,
+                    animated: true,
+                    completion: nil)
+            }), for: .touchUpInside)
     }
     
 }

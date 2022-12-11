@@ -125,7 +125,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="URLSession"/>
                                         <connections>
-                                            <action selector="sendWirhURLRequestWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r1e-gY-sEr"/>
+                                            <action selector="sendWithURLRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yI2-II-qTc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSp-rz-0Id">
@@ -133,7 +133,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Alamofire"/>
                                         <connections>
-                                            <action selector="sendWithAlamofireWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PoW-4m-BdN"/>
+                                            <action selector="sendWithAlamofire:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zFI-zV-kN1"/>
                                         </connections>
                                     </button>
                                 </subviews>
