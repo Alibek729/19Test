@@ -109,7 +109,9 @@ class ViewController: UIViewController {
     
     @IBAction func sendWithURLRequest(_ sender: UIButton) {
         requestWithURLSession()
-        alertMessage(sender)
+        DispatchQueue.main.async {
+            self.alertMessage(sender)
+        }
     }
     
     @IBAction func sendWithAlamofire(_ sender: UIButton) {
